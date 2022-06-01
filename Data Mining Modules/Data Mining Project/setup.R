@@ -1,9 +1,4 @@
 # Module 1
-install.packages("readr")
-install.packages("rlang")
-install.packages("dplyr")
-install.packages("missForest")
-install.packages("randomForest")
 library (readr)
 library (rlang)
 library(dplyr)
@@ -11,7 +6,6 @@ library(missForest)
 library(randomForest)
 
 # Module 2
-install.packages("ggplot2")
 library(ggplot2)
 
 histogram <- function(continuous_variable) {
@@ -34,12 +28,6 @@ var_dict <- function(variable_name){
 }
 
 # Module 4
-install.packages("caTools")
-install.packages("ROSE")
-install.packages("e1071")
-install.packages("mlbench")
-install.packages("caret")
-install.packages("randomForest")
 library(caTools)
 library(ROSE)
 library(e1071)
@@ -48,10 +36,6 @@ library(caret)
 library(randomForest)
 
 # Module 5
-install.packages("rpart")
-install.packages("rpart.plot")
-install.packages("pROC")
-install.packages("caret")
 library(rpart)
 library(rpart.plot)
 library(pROC)
