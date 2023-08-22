@@ -50,7 +50,6 @@ RUN yum -y --skip-broken install \
 # create notebook user
 RUN useradd -m -p $(openssl passwd FoT4wsPfcbgeGDwBrr) notebook_user
 RUN chown -R notebook_user:notebook_user /home/notebook_user
-RUN usermod -u 1001380000 notebook_user
 
 # upgrade pip
 RUN pip3 install --upgrade pip
@@ -143,6 +142,8 @@ RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical
 RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Stroke (R).ipynb'
 
 USER root
+RUN usermod -u 1001380000 notebook_user
+
 # Configure Google Analytics for the notebooks for the notebook_user user
 # Place the settings in the /home/notebook_user/.jupyter/nbconfig/common.json file
 #RUN echo "{" >> /home/notebook_user/.jupyter/nbconfig/common.json
