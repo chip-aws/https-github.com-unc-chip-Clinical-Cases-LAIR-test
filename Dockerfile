@@ -160,7 +160,7 @@ USER root
 #RUN echo "        \"password\": \"argon2:$argon2id$v=19$m=10240,t=10,p=8$+sW8ugZ0CpU6q1GD0OO8kg$8D9kbFeuvMRGGd5gZc4FGWaCeblbPH/EQStacnIsQHM\"" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 #RUN echo "    }" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 #RUN echo "}" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
-USER 1001
+USER notebook_user
 
 # Make port 8888 available to the world outside this container
 EXPOSE 8888
