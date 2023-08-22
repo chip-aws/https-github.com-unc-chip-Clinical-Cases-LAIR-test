@@ -5,7 +5,7 @@ LABEL io.k8s.description="Datamine Jupyter Notebook Learning Modules" \
  io.k8s.display-name="Datamine Jupyter Notebook Learning Modules" \
  io.openshift.expose-services="8888:http"
 
-USER 1001
+USER root
 
 ENV PYCURL_SSL_LIBRARY nss
 
@@ -52,10 +52,9 @@ RUN yum -y --skip-broken install \
            libcurl-devel
 
 # create notebook user
-#RUN useradd -m -p $(openssl passwd FoT4wsPfcbgeGDwBrr) notebook_user
-#RUN chown -R notebook_user:notebook_user /home/notebook_user
-#RUN usermod -u 1001 notebook_user
-
+RUN useradd -m -p $(openssl passwd FoT4wsPfcbgeGDwBrr) notebook_user
+RUN chown -R notebook_user:notebook_user /home/notebook_user
+RUN usermod -u 1001 notebook_user
 
 # upgrade pip
 RUN pip3 install --upgrade pip
@@ -80,7 +79,6 @@ RUN unzip master2.zip
 RUN mv /Clinical-Cases-LAIR-master /home/notebook_user/
 RUN mv /Methods-in-Medical-Informatics-master /home/notebook_user/Clinical-Cases-LAIR-master/
 RUN mkdir "/home/notebook_user/Clinical-Cases-LAIR-master/Data Mining Modules/userLibrary"
-
 # Install R packages
 #RUN R -e "install.packages(c('IRkernel','tidyverse','GGally','randomForest','caret','forcats','cowplot','e1071','pROC','mice','gbm','rpart','rpart.plot'), dependencies=TRUE, repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages(c('ggplot2', 'dplyr', 'tidyr', 'readr', 'purrr', 'tibble', 'stringr', 'tidyverse','rzmq','repr','IRkernel','IRdisplay','caret','forcats','cowplot','e1071','pROC','mice','gbm','rpart','rpart.plot','dplyr','lattice','ggplot2','fastDummies', 'GGally', 'caret','tidyverse'), c('/usr/lib64/R/library/'), dependencies=TRUE, repos='http://cran.us.r-project.org')"
@@ -93,6 +91,7 @@ RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/itertool
 RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/missForest/missForest_1.4.tar.gz';install.packages(packageurl, repos=NULL, type='source')"
 RUN pip3 install -r /home/notebook_user/Clinical-Cases-LAIR-master/requirements.txt
 
+USER notebook_user
 RUN jupyter notebook --generate-config
 
 RUN echo "c.NotebookApp.allow_remote_access = True" >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
@@ -104,6 +103,7 @@ RUN echo "c.NotebookApp.token = ''" >> /home/notebook_user/.jupyter/jupyter_note
 RUN echo "c.NotebookApp.notebook_dir = '/home/notebook_user/Clinical-Cases-LAIR-master'" >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.password = 'sha1:b39ab64d70ae:f28f1468a2f5ceca16cdfac6628864746dec68b1'"  >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.allow_password_change = False"
+USER root
 RUN pip install ipywidgets
 RUN jupyter contrib nbextension install
 RUN jupyter nbextension enable --py widgetsnbextension
@@ -114,11 +114,11 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 #RUN sed -i 's/\"tracking_id\": null/\"tracking_id\": \"UA-153659007-1\"/' /usr/local/etc/jupyter/nbconfig/common.json
 #RUN touch /tmp/cookies.txt
 #RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Ee0S0OVTl8PJ8RMw_MLrXYQhguuydtNR' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Ee0S0OVTl8PJ8RMw_MLrXYQhguuydtNR" -O /home/notebook_user/Clinical-Cases-LAIR-master/cases/data/h129.csv && rm -rf /tmp/cookies.txt
-#Copied a truncated h129.csv to repository since GitHub wouldn't allow full file
-#COPY h129.csv /home/notebook_user/Clinical-Cases-LAIR-master/cases/data/
-RUN chmod u=rwx /home/notebook_user
+#RUN chown -R root:root /home/notebook_user/Clinical-Cases-LAIR-master
+#RUN chmod u=rwx /home/notebook_user
 
 # Start Jupyter Notebook
+USER notebook_user
 CMD jupyter notebook
 
 RUN jupyter nbextension enable collapsible_headings/main
@@ -143,6 +143,7 @@ RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical
 RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Stroke (Python).ipynb'
 RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Stroke (R).ipynb'
 
+USER root
 
 # Configure Google Analytics for the notebooks for the notebook_user user
 # Place the settings in the /home/notebook_user/.jupyter/nbconfig/common.json file
@@ -159,6 +160,8 @@ RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical
 #RUN echo "        \"password\": \"argon2:$argon2id$v=19$m=10240,t=10,p=8$+sW8ugZ0CpU6q1GD0OO8kg$8D9kbFeuvMRGGd5gZc4FGWaCeblbPH/EQStacnIsQHM\"" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 #RUN echo "    }" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 #RUN echo "}" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
+USER 1001
 
 # Make port 8888 available to the world outside this container
 EXPOSE 8888
+
