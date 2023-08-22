@@ -114,8 +114,9 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 #RUN sed -i 's/\"tracking_id\": null/\"tracking_id\": \"UA-153659007-1\"/' /usr/local/etc/jupyter/nbconfig/common.json
 #RUN touch /tmp/cookies.txt
 #RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Ee0S0OVTl8PJ8RMw_MLrXYQhguuydtNR' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Ee0S0OVTl8PJ8RMw_MLrXYQhguuydtNR" -O /home/notebook_user/Clinical-Cases-LAIR-master/cases/data/h129.csv && rm -rf /tmp/cookies.txt
-#RUN chown -R root:root /home/notebook_user/Clinical-Cases-LAIR-master
-#RUN chmod u=rwx /home/notebook_user
+USER root
+RUN chown -R root:root /home/notebook_user/Clinical-Cases-LAIR-master
+RUN chmod -R 0755 /home/notebook_user
 
 # Start Jupyter Notebook
 USER notebook_user
@@ -142,8 +143,6 @@ RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical
 RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Heart Disease (R).ipynb'
 RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Stroke (Python).ipynb'
 RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Stroke (R).ipynb'
-
-USER root
 
 # Configure Google Analytics for the notebooks for the notebook_user user
 # Place the settings in the /home/notebook_user/.jupyter/nbconfig/common.json file
