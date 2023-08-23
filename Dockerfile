@@ -53,7 +53,11 @@ RUN yum -y --skip-broken install \
 
 # create notebook user
 RUN useradd -m -p $(openssl passwd FoT4wsPfcbgeGDwBrr) notebook_user
-#RUN chown -R notebook_user:notebook_user /home/notebook_user
+RUN chown -R notebook_user:notebook_user /home/notebook_user
+
+RUN chgrp -R 0 /home/notebook_user && \
+    chmod -R g=u /home/notebook_user
+
 
 # upgrade pip
 RUN pip3 install --upgrade pip
@@ -115,7 +119,6 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 #RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Ee0S0OVTl8PJ8RMw_MLrXYQhguuydtNR' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Ee0S0OVTl8PJ8RMw_MLrXYQhguuydtNR" -O /home/notebook_user/Clinical-Cases-LAIR-master/cases/data/h129.csv && rm -rf /tmp/cookies.txt
 USER root
 #RUN chown -R root:root /home/notebook_user/Clinical-Cases-LAIR-master
-RUN chmod -R 0777 /home/notebook_user
 
 # Start Jupyter Notebook
 USER notebook_user
