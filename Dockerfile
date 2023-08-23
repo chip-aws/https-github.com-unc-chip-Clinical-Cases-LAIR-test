@@ -160,9 +160,9 @@ RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical
 #RUN echo "    }" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 #RUN echo "}" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 USER root
-RUN chown -R 1001 /home/notebook_user && \
-    chgrp -R 0 /home/notebook_user \
-    chmod -R g+w /home/notebook_user
+RUN chown -R 1001 /home/notebook_user
+RUN chgrp -R 0 /home/notebook_user
+RUN chmod -R g+w /home/notebook_user
 
 USER 1001
 
