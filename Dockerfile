@@ -122,7 +122,6 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 
 # Start Jupyter Notebook
 USER notebook_user
-CMD jupyter notebook
 
 RUN jupyter nbextension enable collapsible_headings/main
 RUN jupyter nbextension enable exercise/main
