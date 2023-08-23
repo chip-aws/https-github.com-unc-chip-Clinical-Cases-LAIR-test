@@ -53,7 +53,7 @@ RUN yum -y --skip-broken install \
 
 # create notebook user
 RUN useradd -m -p $(openssl passwd FoT4wsPfcbgeGDwBrr) notebook_user
-RUN chown -R notebook_user:notebook_user /home/notebook_user
+#RUN chown -R notebook_user:notebook_user /home/notebook_user
 
 # upgrade pip
 RUN pip3 install --upgrade pip
