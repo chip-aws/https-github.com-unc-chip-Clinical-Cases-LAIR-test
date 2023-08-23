@@ -122,6 +122,7 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 
 # Start Jupyter Notebook
 USER notebook_user
+ENTRYPOINT ["jupyter" , "notebook"]
 
 RUN jupyter nbextension enable collapsible_headings/main
 RUN jupyter nbextension enable exercise/main
@@ -161,10 +162,9 @@ RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical
 #RUN echo "    }" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 #RUN echo "}" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 USER root
-RUN chown -R 1001:0 /home/notebook_user/
-USER 1001
+RUN chown -R 1001380000:0 /home/notebook_user/
+USER 1001380000
 
 # Make port 8888 available to the world outside this container
 EXPOSE 8888
 
-ENTRYPOINT ["jupyter" , "notebook"]
