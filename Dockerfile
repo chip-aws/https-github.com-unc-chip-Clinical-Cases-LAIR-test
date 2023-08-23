@@ -167,3 +167,5 @@ RUN chown -R 1001:0 /home/notebook_user/
 
 # Make port 8888 available to the world outside this container
 EXPOSE 8888
+
+#ENTRYPOINT ["/bin/sh -c 'jupyter notebook'"]
