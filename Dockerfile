@@ -162,6 +162,8 @@ RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical
 #RUN echo "    }" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 #RUN echo "}" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 USER notebook_user
+USER 1001
+RUN chown -R 1001:0 /home/notebook_user/
 
 # Make port 8888 available to the world outside this container
 EXPOSE 8888
