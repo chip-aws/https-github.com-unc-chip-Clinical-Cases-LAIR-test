@@ -163,6 +163,7 @@ USER root
 RUN chown -R 1001 /home/notebook_user
 RUN chgrp -R 0 /home/notebook_user
 RUN chmod -R g+w /home/notebook_user
+RUN chmod -R 0777 /home/notebook_user
 
 USER 1001
 
