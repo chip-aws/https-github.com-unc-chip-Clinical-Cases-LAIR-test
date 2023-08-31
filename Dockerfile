@@ -120,7 +120,7 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 USER notebook_user
 ENTRYPOINT ["jupyter" , "notebook"]
 
-CMD jupyterhub
+#CMD jupyterhub
 
 RUN jupyter nbextension enable collapsible_headings/main
 RUN jupyter nbextension enable exercise/main
@@ -163,6 +163,8 @@ USER root
 RUN chown -R 1001 /home/notebook_user
 RUN chgrp -R 0 /home/notebook_user
 RUN chmod -R g+w /home/notebook_user
+#Below is based on RedHat OpenShift documentation
+#RUN chmod -R ug+rwx /home/notebook_user
 RUN chmod -R 0777 /home/notebook_user
 
 USER 1001
