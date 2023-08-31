@@ -162,7 +162,7 @@ RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical
 USER root
 RUN chown -R 1001 /home/notebook_user
 RUN chgrp -R 0 /home/notebook_user
-RUN chmod -R g+w /home/notebook_user
+#RUN chmod -R g+w /home/notebook_user
 #Below is based on RedHat OpenShift documentation
 #RUN chmod -R ug+rwx /home/notebook_user
 RUN chmod -R 0777 /home/notebook_user
