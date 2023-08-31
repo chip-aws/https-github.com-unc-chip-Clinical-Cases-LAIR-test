@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER Doug WHite <dfwhite@unc.edu>
+MAINTAINER Doug White <dfwhite@unc.edu>
 
 LABEL io.k8s.description="Datamine Jupyter Notebook Learning Modules" \
  io.k8s.display-name="Datamine Jupyter Notebook Learning Modules" \
@@ -118,7 +118,7 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 
 # Start Jupyter Notebook
 USER notebook_user
-#ENTRYPOINT ["jupyter" , "notebook"]
+ENTRYPOINT ["jupyter" , "notebook"]
 
 CMD jupyterhub
 
