@@ -118,9 +118,10 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 
 # Start Jupyter Notebook
 USER notebook_user
-ENTRYPOINT ["jupyter" , "notebook"]
+#ENTRYPOINT ["jupyter" , "notebook"]
 
 #CMD jupyterhub
+ENTRYPOINT ["jupyterhub"]
 
 RUN jupyter nbextension enable collapsible_headings/main
 RUN jupyter nbextension enable exercise/main
