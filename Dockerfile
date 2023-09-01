@@ -53,6 +53,7 @@ RUN yum -y --skip-broken install \
 
 # create notebook user
 RUN useradd -m -p $(openssl passwd FoT4wsPfcbgeGDwBrr) notebook_user
+RUN usermod -u 1001380000 notebook_user
 RUN chown -R notebook_user:notebook_user /home/notebook_user
 
 # upgrade pip
@@ -160,14 +161,14 @@ RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical
 #RUN echo "    }" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 #RUN echo "}" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 USER root
-RUN chown -R 1001 /home/notebook_user
+RUN chown -R 1001380000 /home/notebook_user
 RUN chgrp -R 0 /home/notebook_user
 #RUN chmod -R g+w /home/notebook_user
 #Below is based on RedHat OpenShift documentation
 #RUN chmod -R ug+rwx /home/notebook_user
 RUN chmod -R 0777 /home/notebook_user
 
-USER 1001
+USER 1001380000
 
 # Make port 8888 available to the world outside this container
 EXPOSE 8888
