@@ -120,6 +120,7 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 
 # Start Jupyter Notebook
 USER notebook_user
+WORKDIR "/home/notebook_user/"
 ENTRYPOINT ["jupyter" , "notebook"]
 
 #CMD jupyterhub
