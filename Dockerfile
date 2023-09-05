@@ -82,8 +82,6 @@ RUN wget --no-check-certificate -O /home/notebook_user/master.zip https://github
 RUN wget --no-check-certificate -O /home/notebook_user/master2.zip https://github.com/unc-chip/Methods-in-Medical-Informatics/archive/master.zip
 RUN unzip /home/notebook_user/master.zip
 RUN unzip /home/notebook_user/master2.zip
-RUN mv /Clinical-Cases-LAIR-master /home/notebook_user/
-RUN mv /Methods-in-Medical-Informatics-master /home/notebook_user/Clinical-Cases-LAIR-master/
 RUN mkdir "/home/notebook_user/Clinical-Cases-LAIR-master/Data Mining Modules/userLibrary"
 # Install R packages
 #RUN R -e "install.packages(c('IRkernel','tidyverse','GGally','randomForest','caret','forcats','cowplot','e1071','pROC','mice','gbm','rpart','rpart.plot'), dependencies=TRUE, repos='http://cran.us.r-project.org')"
