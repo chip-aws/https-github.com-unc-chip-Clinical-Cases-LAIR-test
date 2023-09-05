@@ -67,6 +67,25 @@ RUN pip3 install --upgrade pip
 # Install JupyterNotebook
 RUN pip3 install jupyter
 RUN pip3 install nltk
+RUN pip3 install ipywidgets
+RUN pip3 install jupyter_contrib_nbextensions
+RUN pip3 install numpy==1.17.2
+RUN pip3 install pandas==0.25.1
+RUN pip3 install scipy==1.3.1
+RUN pip3 install scikit-learn==0.21.3
+RUN pip3 install scikit-image==0.14.3
+RUN pip3 install matplotlib==3.1.1
+RUN pip3 install seaborn==0.9.0
+RUN pip3 install statsmodels==0.10.1
+RUN pip3 install pydotplus==2.0.2
+RUN pip3 install nltk==3.4.5
+RUN pip3 install biopython==1.76
+RUN pip3 install IPython==7.4.0
+RUN pip3 install spacy==2.3.0
+RUN pip3 install leather==0.3.3
+RUN pip3 install covid==2.4.0
+RUN pip3 install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz#egg=en_core_web_sm
+
 # copy notebooks
 RUN mkdir -p /home/notebook_user/
 RUN chmod -R 0777 /home/notebook_user
@@ -95,7 +114,7 @@ RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/metafor/
 RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/itertools/itertools_0.1-1.tar.gz';install.packages(packageurl, repos=NULL, type='source')"
 RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/missForest/missForest_1.4.tar.gz';install.packages(packageurl, repos=NULL, type='source')"
 USER root
-RUN pip3 install -r "/home/notebook_user/Clinical-Cases-LAIR-master/requirements.txt"
+#RUN pip3 install -r "/home/notebook_user/Clinical-Cases-LAIR-master/requirements.txt"
 
 USER notebook_user
 RUN jupyter notebook --generate-config
