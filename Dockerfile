@@ -69,6 +69,7 @@ RUN pip3 install jupyter
 RUN pip3 install nltk
 # copy notebooks
 RUN mkdir -p /home/notebook_user/
+RUN chmod -R 0777 /home/notebook_user
 #RUN wget --no-check-certificate -O master.zip https://github.com/e-cui/Clinical-Cases-LAIR/archive/master.zip
 #RUN unzip master.zip
 #RUN mv /Clinical-Cases-LAIR-master /home/notebook_user/
@@ -77,11 +78,10 @@ RUN mkdir -p /home/notebook_user/
 #RUN unzip master_new1.zip -d Clinical-Cases-LAIR-master_new
 #RUN unzip master_new2.zip -d Clinical-Cases-LAIR-master_new
 #RUN mv -f /Clinical-Cases-LAIR-master_new/Clinical-Cases-LAIR-master/Text\ Mining\ Modules/\(1\)\ Text\ Preprocessing.ipynb /home/notebook_user/Clinical-Cases-LAIR-master/Text\ Mining\ Modules/
-RUN chmod -R 0777 /home/notebook_user
-RUN wget --no-check-certificate -O master.zip https://github.com/unc-chip/Clinical-Cases-LAIR/archive/master.zip
-RUN wget --no-check-certificate -O master2.zip https://github.com/unc-chip/Methods-in-Medical-Informatics/archive/master.zip
-RUN unzip master.zip
-RUN unzip master2.zip
+RUN wget --no-check-certificate -O /home/notebook_user/master.zip https://github.com/unc-chip/Clinical-Cases-LAIR/archive/master.zip
+RUN wget --no-check-certificate -O /home/notebook_user/master2.zip https://github.com/unc-chip/Methods-in-Medical-Informatics/archive/master.zip
+RUN unzip /home/notebook_user/master.zip
+RUN unzip /home/notebook_user/master2.zip
 RUN mv /Clinical-Cases-LAIR-master /home/notebook_user/
 RUN mv /Methods-in-Medical-Informatics-master /home/notebook_user/Clinical-Cases-LAIR-master/
 RUN mkdir "/home/notebook_user/Clinical-Cases-LAIR-master/Data Mining Modules/userLibrary"
