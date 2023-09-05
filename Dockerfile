@@ -85,6 +85,7 @@ RUN pip3 install spacy==2.3.0
 RUN pip3 install leather==0.3.3
 RUN pip3 install covid==2.4.0
 RUN pip3 install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz#egg=en_core_web_sm
+RUN pip3 install jupyterlab==0.35.4
 
 # copy notebooks
 RUN mkdir -p /home/notebook_user/
@@ -129,10 +130,8 @@ RUN echo "c.NotebookApp.notebook_dir = '/home/notebook_user/Clinical-Cases-LAIR-
 RUN echo "c.NotebookApp.password = 'sha1:b39ab64d70ae:f28f1468a2f5ceca16cdfac6628864746dec68b1'"  >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.allow_password_change = False"
 USER root
-RUN pip install ipywidgets
 RUN jupyter contrib nbextension install
 RUN jupyter nbextension enable --py widgetsnbextension
-RUN pip3 install jupyterlab==0.35.4
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 # Install Google Analytics for Jupyter Notebooks and then Configure with Google Analytics Tracking ID
 #RUN pip3 install jupyteranalytics
