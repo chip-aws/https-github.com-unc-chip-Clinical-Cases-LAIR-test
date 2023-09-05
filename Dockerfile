@@ -7,7 +7,11 @@ LABEL io.k8s.description="Datamine Jupyter Notebook Learning Modules" \
 
 USER root
 
-ENV PYCURL_SSL_LIBRARY nss
+ENV PYCURL_SSL_LIBRARY /home/notebook_user/nss
+ENV JUPYTER_DATA_DIR /home/notebook_user/.local/share/jupyter
+ENV JUPYTER_CONFIG_DIR /home/notebook_user/.jupyter
+ENV JUPYTER_RUNTIME_DIR /home/notebook_user/.local/share/jupyter/runtime
+
 
 # Install necessary OS packages and update
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
