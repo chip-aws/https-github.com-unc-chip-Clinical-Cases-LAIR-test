@@ -94,7 +94,7 @@ RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/fastICA/
 RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/metafor/metafor_3.0-2.tar.gz';install.packages(packageurl, repos=NULL, type='source')"
 RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/itertools/itertools_0.1-1.tar.gz';install.packages(packageurl, repos=NULL, type='source')"
 RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/missForest/missForest_1.4.tar.gz';install.packages(packageurl, repos=NULL, type='source')"
-RUN pwd
+USER root
 RUN pip3 install -r "/home/notebook_user/Clinical-Cases-LAIR-master/requirements.txt"
 
 USER notebook_user
