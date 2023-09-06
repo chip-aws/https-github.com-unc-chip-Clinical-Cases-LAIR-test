@@ -167,16 +167,16 @@ RUN jupyter nbextension enable tree-filter/index
 RUN jupyter nbextension enable move_selected_cells/main
 RUN jupyter nbextension enable execution_dependencies/execution_dependencies
 RUN jupyter nbextension enable execute_time/ExecuteTime
-RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Asthma Expenditure (Python).ipynb'
-RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Asthma Expenditure (R).ipynb'
-RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Diabetes Among Pima Indians (Python).ipynb'
-RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Diabetes Among Pima Indians (R).ipynb'
-RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Medical Appointment No Show (Python).ipynb'
-RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Medical Appointment No Show (R).ipynb'
-RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Heart Disease (Python).ipynb'
-RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Heart Disease (R).ipynb'
-RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Stroke (Python).ipynb'
-RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Stroke (R).ipynb'
+#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Asthma Expenditure (Python).ipynb'
+#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Asthma Expenditure (R).ipynb'
+#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Diabetes Among Pima Indians (Python).ipynb'
+#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Diabetes Among Pima Indians (R).ipynb'
+#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Medical Appointment No Show (Python).ipynb'
+#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Medical Appointment No Show (R).ipynb'
+#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Heart Disease (Python).ipynb'
+#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Heart Disease (R).ipynb'
+#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Stroke (Python).ipynb'
+#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Stroke (R).ipynb'
 
 # Configure Google Analytics for the notebooks for the notebook_user user
 # Place the settings in the /home/notebook_user/.jupyter/nbconfig/common.json file
