@@ -151,6 +151,11 @@ ENTRYPOINT ["jupyter" , "notebook"]
 
 #CMD jupyterhub
 
+WORKDIR "/home/notebook_user/"
+ENV JUPYTER_DATA_DIR /home/notebook_user/.local/share/jupyter
+ENV JUPYTER_CONFIG_DIR /home/notebook_user/.jupyter
+ENV JUPYTER_RUNTIME_DIR /home/notebook_user/.local/share/jupyter/runtime
+
 RUN jupyter nbextension enable collapsible_headings/main
 RUN jupyter nbextension enable exercise/main
 RUN jupyter nbextension enable exercise2/main
@@ -189,6 +194,10 @@ RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical
 #RUN echo "    }" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 #RUN echo "}" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 USER root
+WORKDIR "/home/notebook_user/"
+ENV JUPYTER_DATA_DIR /home/notebook_user/.local/share/jupyter
+ENV JUPYTER_CONFIG_DIR /home/notebook_user/.jupyter
+ENV JUPYTER_RUNTIME_DIR /home/notebook_user/.local/share/jupyter/runtime
 RUN chown -R 1001 /home/notebook_user
 RUN chgrp -R 0 /home/notebook_user
 #RUN chmod -R g+w /home/notebook_user
