@@ -205,6 +205,15 @@ RUN chgrp -R 0 /home/notebook_user
 #RUN chmod -R ug+rwx /home/notebook_user
 RUN chmod -R 0777 /home/notebook_user
 
+
+RUN chgrp -R root / \
+    && find / -type d -exec chmod g+rwx,o+rx {} \; \
+    && find / -type f -exec chmod g+rw {} \; 
+ 
+RUN ln -s /usr/bin/env /bin/env
+
+ENV HOME /home/notebook_user
+
 USER 1001
 
 # Make port 8888 available to the world outside this container
