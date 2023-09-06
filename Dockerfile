@@ -209,8 +209,6 @@ RUN chmod -R 0777 /home/notebook_user
 #RUN chgrp -R root /home/notebook_user
 #RUN find /home/notebook_user -type d -exec chmod g+rwx,o+rx {} \;
 #RUN find /home/notebook_user -type f -exec chmod g+rw {} \; 
- 
-RUN ln -s /usr/bin/env /bin/env
 
 ENV HOME /home/notebook_user
 
