@@ -117,7 +117,7 @@ RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/missFore
 USER root
 #RUN pip3 install -r "/home/notebook_user/Clinical-Cases-LAIR-master/requirements.txt"
 
-USER notebook_user
+#USER notebook_user
 RUN jupyter notebook --generate-config
 
 RUN echo "c.NotebookApp.allow_remote_access = True" >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
@@ -129,7 +129,7 @@ RUN echo "c.NotebookApp.token = ''" >> /home/notebook_user/.jupyter/jupyter_note
 RUN echo "c.NotebookApp.notebook_dir = '/home/notebook_user/Clinical-Cases-LAIR-master'" >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.password = 'sha1:b39ab64d70ae:f28f1468a2f5ceca16cdfac6628864746dec68b1'"  >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.allow_password_change = False"
-USER root
+#USER root
 RUN jupyter contrib nbextension install
 RUN jupyter nbextension enable --py widgetsnbextension
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
@@ -142,7 +142,7 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 #RUN chown -R root:root /home/notebook_user/Clinical-Cases-LAIR-master
 
 # Start Jupyter Notebook
-USER notebook_user
+#USER notebook_user
 WORKDIR "/home/notebook_user/"
 ENV JUPYTER_DATA_DIR /home/notebook_user/.local/share/jupyter
 ENV JUPYTER_CONFIG_DIR /home/notebook_user/.jupyter
@@ -193,11 +193,11 @@ RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical
 #RUN echo "        \"password\": \"argon2:$argon2id$v=19$m=10240,t=10,p=8$+sW8ugZ0CpU6q1GD0OO8kg$8D9kbFeuvMRGGd5gZc4FGWaCeblbPH/EQStacnIsQHM\"" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 #RUN echo "    }" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
 #RUN echo "}" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
-USER root
-WORKDIR "/home/notebook_user/"
-ENV JUPYTER_DATA_DIR /home/notebook_user/.local/share/jupyter
-ENV JUPYTER_CONFIG_DIR /home/notebook_user/.jupyter
-ENV JUPYTER_RUNTIME_DIR /home/notebook_user/.local/share/jupyter/runtime
+#USER root
+#WORKDIR "/home/notebook_user/"
+#ENV JUPYTER_DATA_DIR /home/notebook_user/.local/share/jupyter
+#ENV JUPYTER_CONFIG_DIR /home/notebook_user/.jupyter
+#ENV JUPYTER_RUNTIME_DIR /home/notebook_user/.local/share/jupyter/runtime
 RUN chown -R 1001 /home/notebook_user
 RUN chgrp -R 0 /home/notebook_user
 #RUN chmod -R g+w /home/notebook_user
