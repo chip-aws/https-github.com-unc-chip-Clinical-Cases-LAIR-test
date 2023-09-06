@@ -144,12 +144,12 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
 # Start Jupyter Notebook
 USER notebook_user
 WORKDIR "/home/notebook_user/"
-ENTRYPOINT ["jupyter" , "notebook"]
-
-#CMD jupyterhub
 ENV JUPYTER_DATA_DIR /home/notebook_user/.local/share/jupyter
 ENV JUPYTER_CONFIG_DIR /home/notebook_user/.jupyter
 ENV JUPYTER_RUNTIME_DIR /home/notebook_user/.local/share/jupyter/runtime
+ENTRYPOINT ["jupyter" , "notebook"]
+
+#CMD jupyterhub
 
 RUN jupyter nbextension enable collapsible_headings/main
 RUN jupyter nbextension enable exercise/main
