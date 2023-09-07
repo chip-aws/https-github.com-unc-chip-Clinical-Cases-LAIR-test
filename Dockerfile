@@ -105,7 +105,7 @@ RUN unzip /home/notebook_user/master2.zip
 RUN pwd
 RUN mkdir -p "/home/notebook_user/Clinical-Cases-LAIR-master/Data Mining Modules/userLibrary"
 # Install R packages
-#RUN R -e "install.packages(c('IRkernel','tidyverse','GGally','randomForest','caret','forcats','cowplot','e1071','pROC','mice','gbm','rpart','rpart.plot'), dependencies=TRUE, repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages(c('IRkernel','tidyverse','GGally','randomForest','caret','forcats','cowplot','e1071','pROC','mice','gbm','rpart','rpart.plot'), dependencies=TRUE, repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages(c('ggplot2', 'dplyr', 'tidyr', 'readr', 'purrr', 'tibble', 'stringr', 'tidyverse','rzmq','repr','IRkernel','IRdisplay','caret','forcats','cowplot','e1071','pROC','mice','gbm','rpart','rpart.plot','dplyr','lattice','ggplot2','fastDummies', 'GGally', 'caret','tidyverse'), c('/usr/lib64/R/library/'), dependencies=TRUE, repos='http://cran.us.r-project.org')"
 RUN R -e "IRkernel::installspec(user = FALSE)"
 
