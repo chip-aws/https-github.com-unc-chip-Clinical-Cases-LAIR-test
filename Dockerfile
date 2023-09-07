@@ -210,6 +210,9 @@ RUN chgrp -R 0 /home/notebook_user
 #RUN chgrp -R root /home/notebook_user
 RUN find /home/notebook_user -type d -exec chmod ugo+rx {} \;
 RUN find /home/notebook_user -type f -exec chmod ugo+r {} \; 
+RUN find /home/notebook_user/.local -type d -exec chmod ugo+rwx {} \;
+RUN find /home/notebook_user/.local -type f -exec chmod ugo+rwx {} \; 
+
 
 ENV HOME /home/notebook_user
 
