@@ -60,6 +60,8 @@ RUN useradd -m -p $(openssl passwd FoT4wsPfcbgeGDwBrr) notebook_user
 RUN usermod -u 1001 notebook_user
 RUN usermod -g 0 notebook_user
 RUN chown -R notebook_user:root /home/notebook_user
+WORKDIR "/home/notebook_user/"
+
 
 # upgrade pip
 RUN pip3 install --upgrade pip
@@ -88,7 +90,6 @@ RUN pip3 install https://github.com/explosion/spacy-models/releases/download/en_
 RUN pip3 install jupyterlab==0.35.4
 
 # copy notebooks
-RUN mkdir -p /home/notebook_user/
 RUN chmod -R 0777 /home/notebook_user
 #RUN wget --no-check-certificate -O master.zip https://github.com/e-cui/Clinical-Cases-LAIR/archive/master.zip
 #RUN unzip master.zip
@@ -203,7 +204,7 @@ RUN chgrp -R 0 /home/notebook_user
 #RUN chmod -R g+w /home/notebook_user
 #Below is based on RedHat OpenShift documentation
 #RUN chmod -R ug+rwx /home/notebook_user
-RUN chmod -R 0777 /home/notebook_user
+RUN chmod -R 0575 /home/notebook_user
 
 
 #RUN chgrp -R root /home/notebook_user
