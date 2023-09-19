@@ -91,22 +91,10 @@ RUN pip3 install jupyterlab==0.35.4
 
 # copy notebooks
 RUN chmod -R 0777 /home/notebook_user
-#RUN wget --no-check-certificate -O master.zip https://github.com/e-cui/Clinical-Cases-LAIR/archive/master.zip
-#RUN unzip master.zip
-#RUN mv /Clinical-Cases-LAIR-master /home/notebook_user/
-#RUN wget --no-check-certificate -O master_new1.zip https://github.com/unc-chip/Clinical-Cases-LAIR/archive/master.zip
-#RUN wget --no-check-certificate -O master_new2.zip https://github.com/unc-chip/Methods-in-Medical-Informatics/archive/master.zip
-#RUN unzip master_new1.zip -d Clinical-Cases-LAIR-master_new
-#RUN unzip master_new2.zip -d Clinical-Cases-LAIR-master_new
-#RUN mv -f /Clinical-Cases-LAIR-master_new/Clinical-Cases-LAIR-master/Text\ Mining\ Modules/\(1\)\ Text\ Preprocessing.ipynb /home/notebook_user/Clinical-Cases-LAIR-master/Text\ Mining\ Modules/
 RUN wget --no-check-certificate -O /home/notebook_user/master.zip https://github.com/unc-chip/Clinical-Cases-LAIR/archive/master.zip
-RUN wget --no-check-certificate -O /home/notebook_user/master2.zip https://github.com/unc-chip/Methods-in-Medical-Informatics/archive/master.zip
 RUN unzip /home/notebook_user/master.zip
-RUN unzip /home/notebook_user/master2.zip
-RUN pwd
 RUN mkdir -p "/home/notebook_user/Clinical-Cases-LAIR-master/Data Mining Modules/userLibrary"
 # Install R packages
-#RUN R -e "install.packages(c('IRkernel','tidyverse','GGally','randomForest','caret','forcats','cowplot','e1071','pROC','mice','gbm','rpart','rpart.plot'), dependencies=TRUE, repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages(c('ggplot2', 'dplyr', 'tidyr', 'readr', 'purrr', 'tibble', 'stringr', 'tidyverse','rzmq','repr','IRkernel','IRdisplay','caret','forcats','cowplot','e1071','pROC','mice','gbm','rpart','rpart.plot','dplyr','lattice','ggplot2','fastDummies', 'GGally', 'caret','tidyverse'), c('/usr/lib64/R/library/'), dependencies=TRUE, repos='http://cran.us.r-project.org')"
 RUN R -e "IRkernel::installspec(user = FALSE)"
 
@@ -116,9 +104,6 @@ RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/metafor/
 RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/itertools/itertools_0.1-1.tar.gz';install.packages(packageurl, repos=NULL, type='source')"
 RUN R -e "packageurl <- 'https://cran.r-project.org/src/contrib/Archive/missForest/missForest_1.4.tar.gz';install.packages(packageurl, repos=NULL, type='source')"
 USER root
-#RUN pip3 install -r "/home/notebook_user/Clinical-Cases-LAIR-master/requirements.txt"
-
-#USER notebook_user
 RUN jupyter notebook --generate-config
 
 RUN echo "c.NotebookApp.allow_remote_access = True" >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
@@ -130,28 +115,16 @@ RUN echo "c.NotebookApp.token = ''" >> /home/notebook_user/.jupyter/jupyter_note
 RUN echo "c.NotebookApp.notebook_dir = '/home/notebook_user/Clinical-Cases-LAIR-master'" >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.password = 'sha1:b39ab64d70ae:f28f1468a2f5ceca16cdfac6628864746dec68b1'"  >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.allow_password_change = False"
-#USER root
 RUN jupyter contrib nbextension install
 RUN jupyter nbextension enable --py widgetsnbextension
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
-# Install Google Analytics for Jupyter Notebooks and then Configure with Google Analytics Tracking ID
-#RUN pip3 install jupyteranalytics
-#RUN sed -i 's/\"tracking_id\": null/\"tracking_id\": \"UA-153659007-1\"/' /usr/local/etc/jupyter/nbconfig/common.json
-#RUN touch /tmp/cookies.txt
-#RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Ee0S0OVTl8PJ8RMw_MLrXYQhguuydtNR' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Ee0S0OVTl8PJ8RMw_MLrXYQhguuydtNR" -O /home/notebook_user/Clinical-Cases-LAIR-master/cases/data/h129.csv && rm -rf /tmp/cookies.txt
-#USER root
-#RUN chown -R root:root /home/notebook_user/Clinical-Cases-LAIR-master
 
 # Start Jupyter Notebook
-#USER notebook_user
 WORKDIR "/home/notebook_user/"
 ENV JUPYTER_DATA_DIR /home/notebook_user/.local/share/jupyter
 ENV JUPYTER_CONFIG_DIR /home/notebook_user/.jupyter
 ENV JUPYTER_RUNTIME_DIR /home/notebook_user/.local/share/jupyter/runtime
 ENTRYPOINT ["jupyter" , "notebook"]
-
-#CMD jupyterhub
-
 WORKDIR "/home/notebook_user/"
 ENV JUPYTER_DATA_DIR /home/notebook_user/.local/share/jupyter
 ENV JUPYTER_CONFIG_DIR /home/notebook_user/.jupyter
@@ -168,54 +141,15 @@ RUN jupyter nbextension enable tree-filter/index
 RUN jupyter nbextension enable move_selected_cells/main
 RUN jupyter nbextension enable execution_dependencies/execution_dependencies
 RUN jupyter nbextension enable execute_time/ExecuteTime
-#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Asthma Expenditure (Python).ipynb'
-#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Asthma Expenditure (R).ipynb'
-#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Diabetes Among Pima Indians (Python).ipynb'
-#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Diabetes Among Pima Indians (R).ipynb'
-#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Medical Appointment No Show (Python).ipynb'
-#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Medical Appointment No Show (R).ipynb'
-#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Heart Disease (Python).ipynb'
-#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Heart Disease (R).ipynb'
-#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Stroke (Python).ipynb'
-#RUN jupyter trust '/home/notebook_user/Clinical-Cases-LAIR-master/cases/Clinical Case - Predicting Stroke (R).ipynb'
 
-# Configure Google Analytics for the notebooks for the notebook_user user
-# Place the settings in the /home/notebook_user/.jupyter/nbconfig/common.json file
-#RUN echo "{" >> /home/notebook_user/.jupyter/nbconfig/common.json
-#RUN echo "    \"GoogleAnalytics\": {" >> /home/notebook_user/.jupyter/nbconfig/common.json
-#RUN echo "        \"tracking_id\": \"UA-153659007-1\"" >> /home/notebook_user/.jupyter/nbconfig/common.json
-#RUN echo "    }" >> /home/notebook_user/.jupyter/nbconfig/common.json
-#RUN echo "}" >> /home/notebook_user/.jupyter/nbconfig/common.json
 
-# Configure a password for the notebooks for the notebook_user user
-# Place the settings in the /home/notebook_user/.jupyter/jupyter_notebook_config.json file
-#RUN echo "{" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
-#RUN echo "    \"NotebookApp\": {" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
-#RUN echo "        \"password\": \"argon2:$argon2id$v=19$m=10240,t=10,p=8$+sW8ugZ0CpU6q1GD0OO8kg$8D9kbFeuvMRGGd5gZc4FGWaCeblbPH/EQStacnIsQHM\"" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
-#RUN echo "    }" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
-#RUN echo "}" >> /home/notebook_user/.jupyter/jupyter_notebook_config.json
-#USER root
-#WORKDIR "/home/notebook_user/"
-#ENV JUPYTER_DATA_DIR /home/notebook_user/.local/share/jupyter
-#ENV JUPYTER_CONFIG_DIR /home/notebook_user/.jupyter
-#ENV JUPYTER_RUNTIME_DIR /home/notebook_user/.local/share/jupyter/runtime
 RUN chown -R 1001 /home/notebook_user
 RUN chgrp -R 0 /home/notebook_user
-#RUN chmod -R g+w /home/notebook_user
-#Below is based on RedHat OpenShift documentation
-#RUN chmod -R ug+rwx /home/notebook_user
-#RUN chmod -R 0555 /home/notebook_user
-
-
-#RUN chgrp -R root /home/notebook_user
 RUN find /home/notebook_user -type d -exec chmod ugo+rx {} \;
 RUN find /home/notebook_user -type f -exec chmod ugo+r {} \; 
 RUN find /home/notebook_user/.local -type d -exec chmod ugo+rwx {} \;
 RUN find /home/notebook_user/.local -type f -exec chmod ugo+rwx {} \; 
-
-
 ENV HOME /home/notebook_user
-
 USER 1001
 
 # Make port 8888 available to the world outside this container
