@@ -113,7 +113,8 @@ RUN echo "c.NotebookApp.password_required = False" >> /home/notebook_user/.jupyt
 RUN echo "c.NotebookApp.port = 8888" >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.token = ''" >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.notebook_dir = '/home/notebook_user/Clinical-Cases-LAIR-master'" >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
-RUN echo "c.NotebookApp.password = 'sha1:b39ab64d70ae:f28f1468a2f5ceca16cdfac6628864746dec68b1'"  >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
+#RUN echo "c.NotebookApp.password = 'sha1:b39ab64d70ae:f28f1468a2f5ceca16cdfac6628864746dec68b1'"  >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
+RUN echo "c.NotebookApp.password = 'sha1:f77574a605d0:d1328670f384072a6ed734df205154b0160eae74'"  >> /home/notebook_user/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.allow_password_change = False"
 RUN jupyter contrib nbextension install
 RUN jupyter nbextension enable --py widgetsnbextension
