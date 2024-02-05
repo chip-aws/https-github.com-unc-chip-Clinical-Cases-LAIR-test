@@ -87,7 +87,7 @@ RUN pip3 install spacy==2.3.0
 RUN pip3 install leather==0.3.3
 RUN pip3 install covid==2.4.0
 RUN pip3 install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz#egg=en_core_web_sm
-RUN pip3 install jupyterlab==0.35.4
+RUN pip3 install jupyterlab
 
 # copy notebooks
 RUN chmod -R 0777 /home/notebook_user
