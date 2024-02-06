@@ -17,7 +17,7 @@ ENV JUPYTER_RUNTIME_DIR /home/notebook_user/.local/share/jupyter/runtime
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN yum -y install epel-release # installing EPEL first resolves errors for installing nodejs
 RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
-RUN yum -y install nodejs nodejs010
+RUN yum -y install nodejs nodejs021
 
 RUN yum -y --skip-broken install \
            wget \
