@@ -118,7 +118,7 @@ RUN echo "c.NotebookApp.password = 'sha1:f77574a605d0:d1328670f384072a6ed734df20
 RUN echo "c.NotebookApp.allow_password_change = False"
 RUN jupyter contrib nbextension install
 RUN jupyter nbextension enable --py widgetsnbextension
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 # Start Jupyter Notebook
 WORKDIR "/home/notebook_user/"
